@@ -1,4 +1,6 @@
 ﻿# superoptimizer-ZiweiWu-github
+I read the Superoptimzer paper and the Aha paper. I looked through the Aha code and played around with it before trying to think about how I would implement such a thing from scratch. I used Java for some OOP. Most of the time was spent on trying to figure out the search space.
+
 The Aha Code folder contains the Aha Code. The "mytest.h" file contains the user defined function of "return x+60;". The file "mytest.out" contains the output of the superoptimizer for the function, but not all of it. The program seemed to have stalled for unknown reasons and I had to manually halt it. 
 
 The "src" folder contains Java code.  
