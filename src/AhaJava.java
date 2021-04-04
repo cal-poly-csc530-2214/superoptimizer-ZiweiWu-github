@@ -9,9 +9,12 @@ public class AhaJava {
      * Index 0 = input, everything else is used by the instructions(?)
     */
     public static final int[] registers = new int[33];
+
     public static void main(String[] args) {
-        //TODO: how to get every single possible 
+        //TODO: how to go through all possible register inputs as well as considering immediate value inputs?
+        //TODO: make everything work
     }
+
     /**
      * This is the function that the user wants to optimize
      * @param x Any 32-bit integer
@@ -49,6 +52,8 @@ interface Instruction{
 
 }
 
+//TODO: make classes for all the instructions I want to be used
+
 /**
  * The class implementation for the "and" instruction
  */
@@ -68,5 +73,36 @@ class And implements Instruction{
 
     @Override
     public int get_number_of_operands() {return 3;}
+
+}
+
+/**
+ * One thought I to go through the search space was to create a giant tree of all possible outcomes and then run them
+ * This node is used to store the information of the current instruction and the next possible instructions in an array to save some space
+ * This is a horrible idea and should be scrapped
+ * TODO: since we have all this info in the node already, would it make sense for it to run the simulated insts here?
+ */
+class InstNode{
+    private Instruction thisInst;
+    private InstNode[] nextInsts;
+    private int instLevel; //which instruction number this is (e.g., the 2nd inst of the group, etc.)
+    private int[] operands;
+
+    public InstNode(Instruction _thisInst, InstNode[] _nextInsts, int _instLevel, int[] _operands){
+        thisInst = _thisInst;
+        nextInsts = _nextInsts;
+        instLevel = _instLevel;
+        operands = _operands;
+    }
+
+    public Instruction get_thisInst(){return thisInst;}
+
+    public int[] get_operands(){return operands;}
+
+    public int get_instLevel(){return instLevel;}
+
+    public InstNode getNextInst(int index){return nextInsts[index];}
+
+    public int get_num_of_nextInsts(){return nextInsts.length;}
 
 }
